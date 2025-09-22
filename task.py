@@ -34,35 +34,111 @@
 #Good luck.
 
 class Matrix():
-    def __init__(self, row1, row2):
-        self.row1 = row1
-        self.row2 = row2
+    def __init__(self, arg):
+        self.arg = arg
+        self.jacie = 'gacie'
 
-    def sum(self, row1, row2, row1v2, row2v2):
-        for el in self.row1:
-            i=0
-            row1v2[i] = row1[i] + row1v2[i]
-            i = i+1
+    def __add__(self, other_matrix):
+        summed_matrix = [[], [], []]
+        if type(other_matrix) == int:
+            for j in range(len(self.arg)):
+                for i in range(len(self.arg[j])):
+                    #print(type(self.arg), type(other_matrix))  # other_matrix.jacie
+                    the_sum = self.arg[j][i] + other_matrix
+                    summed_matrix[j].append(the_sum)
 
-        for el in self.row2:
-            i=0
-            row2v2[i] = row2[i] + row2v2[i]
+        # elif type(self.arg) != 'Class':
+        #     print('hell yeah')
+        #     for j in range(len(other_matrix.arg[0])):
+        #         for i in range(len(other_matrix.arg[1])):
+        #             self.arg[j][i] = self.arg
+        #             the_sum = self.arg[j][i] + other_matrix
+        #             summed_matrix[j].append(the_sum)
+            # for j in range(len(self.arg)):
+            #     for i in range(len(self.arg[j])):
+            #         # print(type(self.arg), type(other_matrix))  # other_matrix.jacie
+            #         the_sum = self + other_matrix.arg[j][i]
+            #         summed_matrix[j].append(the_sum)
+        else:
+            for j in range(len(self.arg)):
+                for i in range(len(self.arg[j])):
+                    #print(type(self.arg), type(other_matrix))  # other_matrix.jacie
+                    the_sum = self.arg[j][i] + other_matrix.arg[j][i]
+                    summed_matrix[j].append(the_sum)
+        return summed_matrix
 
-        print(row1v2, row2v2)
+    def __radd__(self, other_arg):
+        summed_matrix = [[], [], []]
+        for j in range(len(self.arg)):
+            for i in range(len(self.arg[j])):
+                # print(type(self.arg), type(other_matrix))  # other_matrix.jacie
+                the_sum = other_arg + self.arg[j][i]
+                summed_matrix[j].append(the_sum)
 
-    def dot_scalar(self, row1, row2,):
+        return summed_matrix
+
+
+
+    #p3 = p1 + p2 + po
+    #p3 = p1.__add__(p2).__add__(po)
+    #p5 = 4 + p1
+    #p5= 4.__add__(p1)
+
+    # def sum_matrix(self, arg2):
+    #     summed_matrix = [[],[],[]]
+    #
+    #     for j in range(len(self.arg)):
+    #         for i in range(len(self.arg[j])):
+    #             the_sum = self.add(self.arg[j][i], arg2[j][i])
+    #             #the_sum = self.arg[j][i] + arg2[j][i]
+    #             summed_matrix[j].append(the_sum)
+    #     return summed_matrix
+    #
+    # def subtract_matrix(self, arg2, lambda):
+    #     return do_sth(lambda ())
+
+
+    def substract_matrix(self, arg1, arg2):
+        subtracted_matrix= arg
+        for j in range(len(arg1.arg)):
+            for i in range(len(arg1.arg[j])):
+                the_substract = self.arg[j][i] - arg2[j][i]
+                subtracted_matrix[j].append(the_substract)
+        return subtracted_matrix
+
+
+    def dot_scalar_matrix(self, row1, row2,):
 
         print(row1, row2)
         row1v2= row1[0]*row2[0]
         row2v2 = row1[1] * row2[1]
         scalar = row1v2 + row2v2
 
-        print("dot scalar: ",scalar)
+        #print("dot scalar: ",scalar)
+        return scalar
 
 
+if __name__ == '__main__':
+    mat_2x2 = Matrix([[1,2], [3,4]])
+    mat_3x3 = Matrix([[1, 2,5],
+                      [3, 4,5],
+                      [7,9,8]])
+    mat_3x3v2 = Matrix([[1, 2,5], [3, 4,5], [7,9,8]])
+    mat_3x3v3 = Matrix([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    matrix3x3v4 = Matrix([[3,3,3], [4,4,4], [1,1,1]])
 
-matrix1 = Matrix([1,2,3], [4,5,6])
-matrix2 = Matrix([11,22,33], [44,55,66])
+    #the_sum = mat_3x3v3.sum_matrix(mat_3x3, mat_3x3)
 
-matrix1.sum([1,2,3], [4,5,6], [11,22,33], [44,55,66])
-matrix2.dot_scalar([1,2], [3,-5])
+    #matrix3 = (mat_3x3v3.__add__(mat_3x3v2)).__add__(nanan)
+    #matrix3 = Matrix.__add__(mat_3x3v3,mat_3x3v2)
+    #matrix3 = mat_3x3v3 + mat_3x3v3
+    matrix3 = mat_3x3v3 + 5
+    matrix4 = mat_3x3v2 + matrix3x3v4
+    matrix5 = 1 + mat_3x3v3
+    #matrix5 = 5.__add__(mat_3x3v3)
+
+    print(matrix3, '\n', matrix4, '\n', matrix5)
+    #print(int.__add__(3,4))
+
+
+#/home/ms/PycharmProjects/level_2_zadan/task1-Martyna73/task.py
