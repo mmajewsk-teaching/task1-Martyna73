@@ -62,8 +62,6 @@ class Bank():
         return "youre welcome"
 
 
-
-
 if __name__ == '__main__':
     an_account = Bank()
     customer1 = an_account.create_account(2137, 'jkowalski', 1000000,[])
