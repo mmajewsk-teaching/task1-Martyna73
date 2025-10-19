@@ -61,7 +61,6 @@ class Bank():
     def trasfer_money(self, customer_giving, customer_recieving, ampunt):
         return "youre welcome"
 
-
 if __name__ == '__main__':
     an_account = Bank()
     customer1 = an_account.create_account(2137, 'jkowalski', 1000000,[])
